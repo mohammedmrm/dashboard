@@ -180,7 +180,7 @@ legend
 			</div>
             <div class="form-group  col-lg-2">
 				<label>رقم الهاتف المستلم</label>
-				<input  type="tel" phone="phone" style="direction: ltr !important;"  data-inputmask="'mask': '9999-999-9999'" value="07" class="form-control" id="customer_phone1" name="customer_phone[]"/>
+				<input  type="tel" phone="phone" style="direction: ltr !important;"  data-inputmask="'mask': '9999-999-9999'" value="" class="form-control" id="customer_phone1" name="customer_phone[]"/>
 				<span id="customer_phone_err1"  class="form-text text-danger"></span>
 			</div>
             <div class="form-group col-lg-2">
@@ -420,7 +420,7 @@ function addMore(){
 			</div>
             <div class="form-group  col-lg-2">
 				<label>رقم الهاتف</label>
-				<input  phone="phone" type="tel" style="direction: ltr !important;" data-inputmask="'mask': '9999-999-9999'" class="form-control" id="customer_phone`+number+`" name="customer_phone[]" value="07" />
+				<input  phone="phone" type="tel" style="direction: ltr !important;" data-inputmask="'mask': '9999-999-9999'" class="form-control" id="customer_phone`+number+`" name="customer_phone[]" value="" />
 				<span id="customer_phone_err`+number+`" class="form-text text-danger"></span>
 			</div>
            <div  class="form-group col-lg-2">
@@ -624,7 +624,7 @@ if (event.which === 13 || event.keyCode === 13 ) {
 
 var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
 if(key == 37) {
-    $(":focus").closest('.form-group').next().find('input,button,textarea').first().focus();  
+    $(":focus").closest('.form-group').next().find('input,button,textarea').first().focus();
 }
 if(key == 39) {
     $(":focus").closest('.form-group').prev().find('input,button,textarea').first().focus();
