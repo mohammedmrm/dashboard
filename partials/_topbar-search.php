@@ -11,9 +11,9 @@
 <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
     <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile kt-header-menu--layout-default " >
         <ul class="kt-menu__nav ">
-          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
+<!--          <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
            <a href="http://localhost/offline/" class="btn btn  btn-danger" data-toggle="kt-tooltip" title="" data-placement="top" data-original-title="استخدام البرنامج بدون اتصال انترنيت"><i class="flaticon2-writing"></i> Go offline</a>
-          </li>
+          </li>-->
         </ul>
     </div>
 </div>

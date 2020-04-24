@@ -86,7 +86,7 @@ legend
 	<div class="kt-portlet__head">
 		<div class="kt-portlet__head-label">
 			<h3 class="kt-portlet__head-title">
-				Add many orders
+				اضافه طلبيات
 			</h3>
 		</div>
 	</div>
@@ -148,46 +148,45 @@ legend
 				<span id="customer_name_err1" class="form-text text-danger"></span>
 			</div>-->
             <div class="form-group col-lg-2">
-				<label>المبلغ الكلي</label>
-				<input tabindex="0.1"  price="price" type="text" class="form-control" id="order" name="order_price[]" placeholder="المبلغ" value="">
-				<span id="order_price_err1" class="form-text text-danger"></span>
-			</div>
-            <div class="form-group col-lg-2">
             	<label>رقم الوصل:</label>
-            	<input tabindex="0.2" no="no" id="order_no1" name="order_no[]" barcode="barcode"  type="text" class="form-control kt-input" placeholder="" data-col-index="0">
+            	<input  no="no" id="order_no1" name="order_no[]" barcode="barcode"  type="text" class="form-control kt-input" placeholder="">
                <span id="order_no_err1" class="form-text text-danger"></span>
            </div>
-			<div class="form-group col-lg-2">
-				<label>المحافظة المرسل لها</label>
-				<select tabindex="0.3" city="city" onchange='getTowns($("#town1"),$("#city1").val())' city="city" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="city[]" id="city1"  value="">
-
-                </select>
-                <span id="city_err1"class="form-text text-danger"></span>
-			</div>
-            <div class="form-group  col-lg-2">
-				<label>القضاء او المنطقه</label>
-				<select tabindex="0.4"  town="town" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="town[]" id="town1"  value="">
-
-                </select>
-                <span id="town_err" class="form-text text-danger"></span>
-			</div>
-            <div class="form-group col-lg-2">
-				<label>تفاصيل اكثر عن العنوان</label>
-				<textarea tabindex="0.5" address="address" type="text" class="form-control" name="order_address[]" value="" style="margin-top: 0px; margin-bottom: 0px; height: 38px;" ></textarea>
-				<span id="order_address_err1" class="form-text text-danger"></span>
-			</div>
-
-            <div class="form-group  col-lg-2">
-				<label>رقم الهاتف المستلم</label>
-				<input tabindex="0.6" type="tel" phone="phone" style="direction: ltr !important;"  data-inputmask="'mask': '9999-999-9999'" value="07" class="form-control" id="customer_phone1" name="customer_phone[]"/>
-				<span id="customer_phone_err1"  class="form-text text-danger"></span>
-			</div>
 			<div class="form-group col-lg-2" style="display:none;" >
 				<label>الصفحه (البيج)</label>
 				<select store='store'  data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="store[]" id="store1"  value="">
 
                 </select>
                 <span id="store_err1" storeerr="storeerr" class="form-text text-danger"></span>
+			</div>
+			<div class="form-group col-lg-2">
+				<label>المحافظة المرسل لها</label>
+				<select  city="city" onchange='getTowns($("#town1"),$("#city1").val())' city="city" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="city[]" id="city1"  value="">
+
+                </select>
+                <span id="city_err1"class="form-text text-danger"></span>
+			</div>
+            <div class="form-group  col-lg-2">
+				<label>القضاء او المنطقه</label>
+				<select   town="town" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="town[]" id="town1"  value="">
+
+                </select>
+                <span id="town_err" class="form-text text-danger"></span>
+			</div>
+            <div class="form-group col-lg-2">
+				<label>تفاصيل اكثر عن العنوان</label>
+				<textarea  address="address" type="text" class="form-control" name="order_address[]" value="" style="margin-top: 0px; margin-bottom: 0px; height: 38px;" ></textarea>
+				<span id="order_address_err1" class="form-text text-danger"></span>
+			</div>
+            <div class="form-group  col-lg-2">
+				<label>رقم الهاتف المستلم</label>
+				<input  type="tel" phone="phone" style="direction: ltr !important;"  data-inputmask="'mask': '9999-999-9999'" value="07" class="form-control" id="customer_phone1" name="customer_phone[]"/>
+				<span id="customer_phone_err1"  class="form-text text-danger"></span>
+			</div>
+            <div class="form-group col-lg-2">
+				<label>المبلغ الكلي</label>
+				<input   price="price" type="text" class="form-control" id="order" name="order_price[]" placeholder="المبلغ" value="">
+				<span id="order_price_err1" class="form-text text-danger"></span>
 			</div>
             <div class="form-group  col-lg-2">
 				<label>ملاحظات</label>
@@ -388,40 +387,11 @@ function addMore(){
     number =  $("#counter").val();
     content =content + `<fieldset id="f`+number+`"><legend>شحنه رقم `+number+`</legend>
           <div class="row">
-           <div  class="form-group col-lg-2">
-				<label>المبلغ الكلي</label>
-				<input foucs="foucs" price="price" tabindex="`+(n+0.1)+`" type="text" class="form-control" id="order_price`+number+`" name="order_price[]" placeholder="المبلغ" value="">
-				<span id="order_price_err`+number+`" class="form-text text-danger"></span>
-			</div>
             <div class="form-group col-lg-2">
             	<label>رقم الوصل:</label>
-            	<input tabindex="`+(n+0.2)+`" no="no" id="order_no`+number+`" value="" name="order_no[]"  type="text" class="form-control kt-input" placeholder="" data-col-index="0">
+            	<input  no="no" id="order_no`+number+`" value="" name="order_no[]"  type="text" class="form-control kt-input" placeholder="">
                 <span id="order_no_err`+number+`" class="form-text text-danger"></span>
             </div>
-			<div class="form-group col-lg-2">
-				<label>المحافظة</label>
-				<select tabindex="`+(n+0.3)+`" city="city" onchange='`+`getTowns($("#town`+number+`"),$("#city`+number+`").val())`+`' city="city" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="city[]" id="city`+number+`"  value="">
-                  `+cities+`
-                </select>
-                <span id="city_err`+number+`"  class="form-text text-danger"></span>
-			</div>
-            <div class="form-group  col-lg-2">
-				<label> القضاء او المنطقه</label>
-				<select tabindex="`+(n+0.4)+`" town="town" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="town[]" id="town`+number+`"  value="">
-                  `+towns+`
-                </select>
-                <span id="town_err`+number+`" class="form-text text-danger"></span>
-			</div>
-            <div class="form-group col-lg-2">
-				<label>تفاصيل اكثر عن العنوان</label>
-				<textarea tabindex="`+(n+0.5)+`" type="text" class="form-control" id="order_address`+number+`" name="order_address[]" value="" style="margin-top: 0px; margin-bottom: 0px; height: 38px;" ></textarea>
-				<span id="order_address_err`+number+`" class="form-text text-danger"></span>
-			</div>
-            <div class="form-group  col-lg-2">
-				<label>رقم الهاتف</label>
-				<input tabindex="`+(n+0.6)+`" phone="phone" type="tel" style="direction: ltr !important;" data-inputmask="'mask': '9999-999-9999'" class="form-control" id="customer_phone`+number+`" name="customer_phone[]" value="07" />
-				<span id="customer_phone_err`+number+`" class="form-text text-danger"></span>
-			</div>
 			<div class="form-group col-lg-2" style="display:none;">
 				<label>الصفحه</label>
 				<select  store="store"  data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="store[]" id="store`+number+`"  value="">
@@ -429,9 +399,38 @@ function addMore(){
                 </select>
                 <span id="store_err`+number+`" storeerr="storeerr" class="form-text text-danger"></span>
 			</div>
+			<div class="form-group col-lg-2">
+				<label>المحافظة</label>
+				<select  city="city" onchange='`+`getTowns($("#town`+number+`"),$("#city`+number+`").val())`+`' city="city" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="city[]" id="city`+number+`"  value="">
+                  `+cities+`
+                </select>
+                <span id="city_err`+number+`"  class="form-text text-danger"></span>
+			</div>
+            <div class="form-group  col-lg-2">
+				<label> القضاء او المنطقه</label>
+				<select  town="town" data-show-subtext="true" data-live-search="true" type="text" class="selectpicker  form-control dropdown-primary" name="town[]" id="town`+number+`"  value="">
+                  `+towns+`
+                </select>
+                <span id="town_err`+number+`" class="form-text text-danger"></span>
+			</div>
+            <div class="form-group col-lg-2">
+				<label>تفاصيل اكثر عن العنوان</label>
+				<textarea  type="text" class="form-control" id="order_address`+number+`" name="order_address[]" value="" style="margin-top: 0px; margin-bottom: 0px; height: 38px;" ></textarea>
+				<span id="order_address_err`+number+`" class="form-text text-danger"></span>
+			</div>
+            <div class="form-group  col-lg-2">
+				<label>رقم الهاتف</label>
+				<input  phone="phone" type="tel" style="direction: ltr !important;" data-inputmask="'mask': '9999-999-9999'" class="form-control" id="customer_phone`+number+`" name="customer_phone[]" value="07" />
+				<span id="customer_phone_err`+number+`" class="form-text text-danger"></span>
+			</div>
+           <div  class="form-group col-lg-2">
+				<label>المبلغ الكلي</label>
+				<input foucs="foucs" price="price"  type="text" class="form-control" id="order_price`+number+`" name="order_price[]" placeholder="المبلغ" value="">
+				<span id="order_price_err`+number+`" class="form-text text-danger"></span>
+			</div>
             <div class="form-group  col-lg-2">
 				<label>ملاحظات</label>
-				<textarea tabindex="`+(n+0.7)+`" note="note" type="text" class="form-control" name="order_note[]" style="height: 38px;">`+order_note+`</textarea>
+				<textarea  note="note" type="text" class="form-control" name="order_note[]" style="height: 38px;">`+order_note+`</textarea>
 				<span id="order_note_err`+number+`" class="form-text text-danger"></span>
 			</div>
 
@@ -615,13 +614,23 @@ jQuery.extend(jQuery.expr[':'], {
         return $(el).is('a, button, :input, [tabindex]');
     }
 });
-$(document).keypress(function(e) {
-if (event.which === 13 || event.keyCode === 13) {
+$(document).keydown(function(e) {
+if (event.which === 13 || event.keyCode === 13 ) {
     event.stopPropagation();
     event.preventDefault();
-    $(":focus").closest('fieldset').nextAll().find('[price="price"]').focus();
+    $(":focus").closest('fieldset').nextAll().find('[no="no"]').focus();
+}
+
+
+var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+if(key == 37) {
+    $(":focus").closest('.form-group').next().find('input,button,textarea').first().focus();  
+}
+if(key == 39) {
+    $(":focus").closest('.form-group').prev().find('input,button,textarea').first().focus();
 }
 });
+
 function customerHistory(ref){
   $.ajax({
         url:"charts/_getCustomerHistory.php",
@@ -655,4 +664,5 @@ function customerHistory(ref){
         }
   });
 }
+
 </script>
