@@ -101,7 +101,7 @@ background-color: #FFFF99;
 
 	<div class="kt-portlet__body">
     <form id="invoicesForm" class="kt-form kt-form--fit kt-margin-b-20">
-          <fieldset><legend>بحث عن فاتوره</legend>
+          <fieldset><legend>بحث عن كشف</legend>
           <div class="row kt-margin-b-20">
             <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">
             	<label>العميل:</label>
@@ -146,7 +146,7 @@ background-color: #FFFF99;
         						<th>رقم هاتف العميل</th>
         						<th>التاريخ</th>
         						<th>الملف</th>
-        						<th>حالة الفاتورة</th>
+        						<th>حالة الكشف</th>
         						<th>تعديل</th>
 		  					</tr>
       	            </thead>
@@ -244,11 +244,11 @@ function getInvoices(){
      $.each(res.data,function(){
 
      if(this.invoice_status == 1){
-       invoice_status = "مدفوعه";
-       btn = '<button type="button" class="btn btn-danger" onclick="unpayInvoice('+this.id+')" >الغأ الدفع</button>';
+       invoice_status = "<span class='bg-success'>تم التحاسب<span>";
+       btn = '<button type="button" class="btn btn-danger" onclick="unpayInvoice('+this.id+')" >الغأ التحاسب</button>';
      }else{
-       invoice_status = "غير مدفوعه";
-       btn = '<button type="button" class="btn btn-success" onclick="payInvoice('+this.id+')">دفع</button>';
+       invoice_status = "<span class='bg-danger'>لم يتم التحاسب<span>";
+       btn = '<button type="button" class="btn btn-success" onclick="payInvoice('+this.id+')">تم التحاسب</button>';
 
      }
      if(this.orders_status == 4){
@@ -275,7 +275,7 @@ function getInvoices(){
             '<td>'+this.client_name+'</td>'+
             '<td>'+this.client_phone+'</td>'+
             '<td>'+this.in_date+'</td>'+
-            '<td><a href="invoice/'+this.path+'" target="_blank">تحميل ملف الفاتوره</a></td>'+
+            '<td><a href="invoice/'+this.path+'" target="_blank">تحميل ملف الكشف</a></td>'+
             '<td>'+invoice_status+'</td>'+
             '<td>'+
                 btn+
@@ -334,14 +334,14 @@ function deleteInvoice(id){
 
 }
 function payInvoice(id){
-  if(confirm("هل انت متاكد من دفع الفاتوره")){
+  if(confirm("هل انت متاكد من التحاسب على الكشف")){
       $.ajax({
         url:"script/_payInvoice.php",
         type:"POST",
         data:{id:id},
         success:function(res){
          if(res.success == 1){
-           Toast.success('تم الدفع');
+           Toast.success('تم التحاسب');
            getInvoices();
          }else{
            Toast.warning(res.msg);
@@ -355,7 +355,7 @@ function payInvoice(id){
   }
 }
 function unpayInvoice(id){
-  if(confirm("هل انت متاكد من الغأ دفع الفاتوره")){
+  if(confirm("هل انت متاكد من الغأ دفع الكشف")){
       $.ajax({
         url:"script/_unpayInvoice.php",
         type:"POST",
