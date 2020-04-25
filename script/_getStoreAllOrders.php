@@ -23,7 +23,7 @@ $sql = "select orders.*,date_format(orders.date,'%Y-%m-%d') as dat,  order_statu
                  )
              ) as client_price
           from orders
-          inner join order_status on orders.order_status = order_status.id
+          inner join order_status on orders.order_status_id = order_status.id
           inner join cites on orders.to_city = cites.id
           inner join towns on orders.to_town = towns.id
           left JOIN client_dev_price on client_dev_price.client_id = orders.client_id AND client_dev_price.city_id = orders.to_city

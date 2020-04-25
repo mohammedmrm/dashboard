@@ -272,7 +272,7 @@ function  getStoreDetails(){
             '<td>'+res.pay.dev+'</td>'+
             '<td>'+res.pay.discount+'</td>'+
             '<td>'+res.pay.client_price+'</td>'+
-            '<td><button onclick="makeInvoice()" type="button" class="btn btn-success">فاتورة</button></td>'+
+            '<td><button onclick="makeInvoice()" type="button" class="btn btn-success">انشاء كشف</button></td>'+
           '</tr>'+
         '</table>'
       );
@@ -288,11 +288,11 @@ function  getStoreDetails(){
        bg = "";
      }
      if(this.invoice_status == 1){
-       invoice_status = "مدفوعه";
-       btn = '<button type="button" class="btn btn-danger" onclick="unpayInvoice('+this.id+')" >الغأ الدفع</button>';
+       invoice_status = "تم التحاسب";
+       btn = '<button type="button" class="btn btn-danger" onclick="unpayInvoice('+this.id+')" >الغأ التحاسب</button>';
      }else{
-       invoice_status = "غير مدفوعه";
-       btn = '<button type="button" class="btn btn-success" onclick="payInvoice('+this.id+')">دفع</button>';
+       invoice_status = "لم يتم التحاسب";
+       btn = '<button type="button" class="btn btn-success" onclick="payInvoice('+this.id+')">تم التحاسب</button>';
 
      }
       $("#invoicesTable").append(

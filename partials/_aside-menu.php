@@ -84,7 +84,7 @@ $se = $_SESSION['role'];
                         <li class="kt-menu__item " aria-haspopup="true" >
                             <a href="?page=pages/invoices.php" class="kt-menu__link ">
                                 <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                <span class="kt-menu__link-text">الفاواتير</span>
+                                <span class="kt-menu__link-text">الكشوفات</span>
                             </a>
                         </li>
                         <?php } ?>

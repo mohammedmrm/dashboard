@@ -45,7 +45,7 @@ if(isset($_REQUEST['ids'])){
   if($action == 'status'){
     if($status >= 1){
       try{
-         $query = "update orders set order_status=? where id=?";
+         $query = "update orders set order_status_id=? where id=?";
          $query2 = "insert into tracking (order_id,order_status_id,date) values(?,?,?)";
          foreach($ids as $v){
            $data = setData($con,$query,[$status,$v]);

@@ -2,11 +2,12 @@
 session_start();
 error_reporting(0);
 header('Content-Type: application/json');
-require("_access.php");
+require_once("_access.php");
 access([1,2,5]);
-require("dbconnection.php");
-require("_crpt.php");
-require("../config.php");
+require_once("dbconnection.php");
+require_once("_crpt.php");
+require_once("_sendNoti.php");
+require_once("../config.php");
 
 use Violin\Violin;
 require_once('../validator/autoload.php');
@@ -56,7 +57,7 @@ if($v->passes()) {
     $success = 1;
     $sql = "select token from clients where id = ?";
     $res = setData($con,$sql,[$client]);
-    sendNotification([$res[0]['token']],'تم اضافه سوق','تم اضافه سوق جديد الى ملفك','../');
+    sendNotification([$res[0]['token']],[],'تم اضافه سوق','تم اضافه سوق جديد الى ملفك','../');
   }
 }else{
   $error = [

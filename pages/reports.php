@@ -82,7 +82,7 @@ legend
 }
 .success {
   display: block;
-  background-color: #990000;
+  background-color: #008000;
   color:#FFFFFF;
   text-align: center !important;
 }
@@ -238,16 +238,16 @@ legend
                 </select>
             </div>
             <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">
-            	<label>حالة الفاتوره</label>
+            	<label>حالة الطلبات من الكشف</label>
                 <select id="invoice" name="invoice" onchange="getorders()" class="form-control kt-input" data-col-index="2">
             		<option value="">... اختر...</option>
-            		<option value="1">طلبات بدون فاتوره</option>
-            		<option value="2">طلبات بفاتوره</option>
+            		<option value="1">طلبات بدون كشف</option>
+            		<option value="2">طلبات كشف</option>
                 </select>
             </div>
             <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">
-                	<label class="">توليد فاتوره:</label><br />
-                    <input  id="invoicebtn" name="invoicebtn" type="button" value="Invoice" onclick="makeInvoice()" class="btn btn-success" placeholder="" data-col-index="1">
+                	<label class="">توليد كشف:</label><br />
+                    <input  id="invoicebtn" name="invoicebtn" type="button" value="كشف" onclick="makeInvoice()" class="btn btn-danger" placeholder="" data-col-index="1">
             </div>
             <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile">
                 	<label class="">تحميل التقرير:</label><br />
