@@ -681,6 +681,27 @@ $.ajax({
   }
 });
 }
+function deleteOrder(id){
+  if(confirm("هل انت متاكد من الحذف")){
+      $.ajax({
+        url:"script/_deleteOrder.php",
+        type:"POST",
+        data:{id:id},
+        success:function(res){
+         if(res.success == 1){
+           Toast.success('تم الحذف');
+           getorders();
+         }else{
+           Toast.warning(res.msg);
+         }
+         console.log(res);
+        },
+        error:function(e){
+          console.log(e);
+        }
+      });
+  }
+}
 function OrderChat(id,last){
   if(id != $("#chat_order_id").val()){
     chat = 1;
