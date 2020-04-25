@@ -1042,7 +1042,7 @@ function makeInvoice() {
                   console.log(res);
                   if(res.success == 1){
                     getorders();
-                    window.open(window.location.origin+'/alnahr/alnahr-dashboard/invoice/'+res.invoice, '_blank');
+                    window.open('invoice/'+res.invoice, '_blank');
                   }else{
                     Toast.warning("خطأ");
                   }

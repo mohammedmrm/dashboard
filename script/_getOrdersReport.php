@@ -97,7 +97,7 @@ if($_SESSION['role'] != 1){
     $filter .= " and orders.store_id=".$store;
   }
   if($invoice == 1){
-    $filter .= " and orders.invoice_id =''";
+    $filter .= " and (orders.invoice_id ='' or orders.invoice_id =0)";
   }else if($invoice == 2){
     $filter .= " and orders.invoice_id !=''";
   }

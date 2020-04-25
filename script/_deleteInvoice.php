@@ -29,10 +29,10 @@ if($v->passes()){
                  $result = setData($con,$sql,[$id]);
                  unlink('../invoice/'.$re[0]['path']);
              }else{
-                $msg = "فشل  حذف الفاتوره";
+                $msg = "فشل  حذف كشف";
              }
          }else{
-           $msg="لايمكن حذف فاتوره مدفوعه";
+           $msg="لايمكن حذف كشف تم التحاسب عليه";
          }
 }else{
   $msg = "فشل الحذف";
