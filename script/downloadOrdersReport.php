@@ -29,7 +29,7 @@ $start = trim($_REQUEST['start']);
 $end = trim($_REQUEST['end']);
 
 
-$total = [];
+ $total = [];
 $money_status = trim($_REQUEST['money_status']);
 if(empty($end)) {
   $end = date('Y-m-d 00:00:00', strtotime($end. ' + 1 day'));
@@ -45,7 +45,7 @@ if(empty($start)) {
 
 try{
   $count = "select count(*) as count from orders ";
-  $query = "select orders.*,
+  $query = "select orders.*,date_format(orders.date,'%Y-%m-%d') as date,
             clients.name as client_name,clients.phone as client_phone,
             cites.name as city,towns.name as town,branches.name as branch_name
             from orders left join
@@ -127,15 +127,13 @@ $hcontent .=
  '<tr>
    <td width="30" align="center">'.$i.'</td>
    <td align="center">'.$data[$i]['order_no'].'</td>
-   <td align="center">'.$data[$i]['client_name'].'<br />'.$data[$i]['client_phone'].'</td>
-   <td width="100" align="center">'.$data[$i]['customer_name'].'<br />'.$data[$i]['customer_phone'].'</td>
-   <td align="center">'.$data[$i]['branch_name'].'</td>
-   <td align="center">'.$data[$i]['city'].'/'.$data[$i]['town'].'</td>
+   <td align="center" width="110">'.$data[$i]['client_name'].'<br />'.$data[$i]['client_phone'].'</td>
+   <td width="110" align="center">'.$data[$i]['customer_phone'].'</td>
+   <td align="center">'.$data[$i]['city'].'-'.$data[$i]['town'].'-'.$data[$i]['address'].'</td>
    <td width="100" align="center">'.$data[$i]['date'].'</td>
    <td align="center">'.number_format($data[$i]['price']).'</td>
    <td align="center">'.number_format($data[$i]['new_price']).'</td>
    <td align="center">'.number_format($data[$i]['dev_price']).'</td>
-   <td align="center">'.number_format($data[$i]['discount']).'</td>
    <td align="center">'.number_format($data[$i]['client_price']).'</td>
  </tr>';
   $total['discount'] += $data[$i]['discount'];
@@ -156,8 +154,37 @@ if($client >=1){
 }
 
 require_once("../tcpdf/tcpdf.php");
+class MYPDF extends TCPDF {
+    public function Header() {
+        // Set font
+        $t = $GLOBALS['total'];
+        $this->SetFont('aealarabiya', 'B', 12);
+        // Title
+        $this->writeHTML('
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+         <table>
+         <tr>
+          <td rowspan="4"><img src="../img/logos/logo.png" height="90px"/></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+         </tr>
+         <tr>
+          <td width="230px">اسم العميل او الصفحه:'. $t['client'].'</td>
+          <td width="400px" style="color:#FF0000;text-align:center;display:block;">كشف حساب</td>
+          <td >التاريخ:'.date('Y-m-d').'</td>
+         </tr>
+         <tr>
+          <td width="230px">الصافي للعميل:'.$t['client_price'].'</td>
+          <td width="400px" style="text-align:center;display:block;">عدد الطلبيات:'.$t['orders'].'</td>
+          <td >كشف غام</td>
+         </tr>
+        </table>
+        ');
+    }
+}
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
@@ -177,8 +204,7 @@ $pdf->setLanguageArray($lg);
 $pdf->SetFont('aealarabiya', '', 12);
 
 // set default header data
-$pdf->SetHeaderData("../../../".$config['Company_logo'],60, ' اسم العميل: '.$total['client']."               "." الفترة الزمنية: ".date("Y-m-d",strtotime($start))." || ".date("Y-m-d",strtotime($end)),"السعر الصافي للعميل: ".number_format($total['client_price'])."                "."سعر التوصيل:".number_format($total['dev_price'])."\n"."عدد الطلبيات: ".$total['orders']." ");
-
+//$pdf->SetHeaderData("../../../".$config['Company_logo'],35, "التقرير الشامل", "اسم");
 // set header and footer fonts
 $pdf->setHeaderFont(Array('aealarabiya', '', 12));
 $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -209,15 +235,13 @@ $htmlpersian = '		<table border="1" class="table">
 	  						<tr  class="head-tr">
                                         <th width="30">#</th>
                                         <th>رقم الوصل</th>
-										<th>اسم ورقم هاتف العميل</th>
-										<th width="100">اسم ورقم هاتف المستلم</th>
-										<th>الفرع المرسل له</th>
+										<th width="110">اسم ورقم هاتف العميل</th>
+										<th width="110">اسم   المستلم</th>
 										<th>عنوان الارسال</th>
                                         <th width="100">تاريخ الادخال</th>
 										<th>سعر الوصل</th>
 										<th>المبلغ المستلم</th>
 										<th>سعر التوصيل</th>
-										<th>الخصم</th>
 										<th>السعر الصافي للعميل</th>
 							</tr>
       	            </thead>

@@ -62,7 +62,44 @@ try{
    $data=["error"=>$ex];
    $success="0";
 }
-
+// set default header data
+if($status == 4){
+  $status_name = "مستلمة";
+  $style .= "
+  .head-tr {
+   background-color: #33CC00;
+   color:#111;
+  }
+</style>
+  ";
+}else if($status == 6 || $status == 9 ){
+  $status_name = "راجعه";
+ $style .= "
+  .head-tr {
+   background-color: #FF3300;
+   color:#111;
+  }
+</style>
+  ";
+}else if($status == 7){
+  $status_name = "مؤجل";
+   $style .= "
+  .head-tr {
+   background-color: #FFFF99;
+   color:#111;
+  }
+</style>
+  ";
+}else{
+  $status_name = "غير معروفه";
+   $style .= "
+  .head-tr {
+   background-color: #CCCCCC;
+   color:#111;
+  }
+</style>
+  ";
+}
 if($orders > 0){
     try{
         $i = 0;
@@ -115,6 +152,9 @@ if($orders > 0){
            $sql = "update orders set invoice_id =? where id=?";
            $res = setData($con,$sql,[$invoice,$v['id']]);
        }
+       $total['invoice'] = $invoice;
+       $total['status'] = $status_name;
+       $total['date'] = $res[0]['id'];
     }
 
 
@@ -134,8 +174,37 @@ if($orders > 0){
     }
 
 require_once("../tcpdf/tcpdf.php");
+class MYPDF extends TCPDF {
+    public function Header() {
+        // Set font
+        $t = $GLOBALS['total'];
+        $this->SetFont('aealarabiya', 'B', 12);
+        // Title
+        $this->writeHTML('
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+         <table>
+         <tr>
+          <td rowspan="4"><img src="../img/logos/logo.png" height="90px"/></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+         </tr>
+         <tr>
+          <td width="230px">اسم العميل او الصفحه:'. $t['client'].'</td>
+          <td width="400px" style="color:#FF0000;text-align:center;display:block;">كشف حساب ('.$t['status'].')</td>
+          <td >التاريخ:'.$t['date'].'</td>
+         </tr>
+         <tr>
+          <td width="230px">الصافي للعميل:'.$t['client_price'].'</td>
+          <td width="400px" style="text-align:center;display:block;">عدد الطلبيات:'.$t['orders'].'</td>
+          <td >رقم الكشف:'.$t['orders'].'</td>
+         </tr>
+        </table>
+        ');
+    }
+}
+$pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
@@ -154,45 +223,8 @@ $pdf->setLanguageArray($lg);
 // set font
 $pdf->SetFont('aealarabiya', '', 12);
 
-// set default header data
-if($status == 4){
-  $status_name = "مستلمة";
-  $style .= "
-  .head-tr {
-   background-color: #33CC00;
-   color:#111;
-  }
-</style>
-  ";
-}else if($status == 6){
-  $status_name = "راجعه";
- $style .= "
-  .head-tr {
-   background-color: #FF3300;
-   color:#111;
-  }
-</style>
-  ";
-}else if($status == 7){
-  $status_name = "مؤجل";
-   $style .= "
-  .head-tr {
-   background-color: #FFFF99;
-   color:#111;
-  }
-</style>
-  ";
-}else{
-  $status_name = "غير معروفه";
-   $style .= "
-  .head-tr {
-   background-color: #CCCCCC;
-   color:#111;
-  }
-</style>
-  ";
-}
-$pdf->SetHeaderData("../../../".$config['Company_logo'],30, ' اسم الصفحه او البيح: '.$total['store']."               "." الفترة الزمنية: ".date("Y-m-d",strtotime($start))." || ".date("Y-m-d",strtotime($end))," حالة الطلبات : ".$status_name."\n"."السعر الصافي للعميل: ".number_format($total['client_price'])."                "."\n"."عدد الطلبيات: ".$total['orders']." ");
+
+//$pdf->SetHeaderData("../../../".$config['Company_logo'],30, ' اسم الصفحه او البيح: '.$total['store']."               "." الفترة الزمنية: ".date("Y-m-d",strtotime($start))." || ".date("Y-m-d",strtotime($end))," حالة الطلبات : ".$status_name."\n"."السعر الصافي للعميل: ".number_format($total['client_price'])."                "."\n"."عدد الطلبيات: ".$total['orders']." ");
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array('aealarabiya', '', 12));
