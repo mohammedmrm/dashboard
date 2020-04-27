@@ -361,17 +361,18 @@ legend
 						<input type="name" id="e_price" name="e_price" class="form-control"  placeholder="">
 						<span class="form-text  text-danger" id="e_price_err"></span>
 					</div>
-                  <div class="form-group">
+<!--                  <div class="form-group">
   						<label>نوع الطلب:</label>
-  						<select data-show-subtext="true" data-live-search="true" type="text" class="selectpicker form-control dropdown-primary" name="e_order_type" id="e_order_type"  value="">
-                          <option value="عام">عامة</option>
+  						<select data-show-subtext="true" data-live-search="true" type="text" class="selectpicker form-control" name="e_order_type" id="e_order_type" >
+                          <option value="">----</option>
+                          <option value="multi">عامة</option>
                           <option value="ملابس">ملابس</option>
                           <option value="الكترونيات">الكترونيات</option>
                           <option value="وثائق">وثائق</option>
                           <option value="اثاث">اثاث</option>
                          </select>
                           <span class="form-text text-danger" id="e_order_type_err"></span>
-  				</div>
+  				</div>-->
                   <div class="form-group">
   						<label>الوزن:</label>
   						<input type="number" id="e_weight" name="e_weight" class="form-control"  placeholder="">
@@ -796,12 +797,12 @@ function OrderReceipt(id){
 function frameLoaded(){
   $('#receiptIframe').parent().removeClass('loading');
 }
-function editOrder(id){
-
-  $("#editOrderid").val(id);
   getBraches($("#e_branch"));
   getBraches($("#e_branch_to"));
   getCities($("#e_city"));
+function editOrder(id){
+
+  $("#editOrderid").val(id);
   $.ajax({
     url:"script/_getOrder.php",
     data:{id: id},
@@ -814,11 +815,10 @@ function editOrder(id){
           $('#e_iprice').val(this.new_price);
           $('#e_customer_phone').val(this.customer_phone);
           $('#e_customer_name').val(this.customer_name);
-          $('#e_order_type').selectpicker('val', this.order_type);
 
-          $('#e_city').selectpicker('val', this.to_city);
 
-          $('#e_branch').selectpicker('val', this.from_branch);
+          $('#e_city').val(this.to_city);
+          $('#e_branch').val(this.from_branch);
 
           getClients($('#e_client_id'),$('#e_branch').val());
           getTowns($('#e_town'),$('#e_city').val());

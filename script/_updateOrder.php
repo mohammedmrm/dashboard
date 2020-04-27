@@ -51,7 +51,7 @@ $manger = $_SESSION['userid'];
 
 $id = $_REQUEST['e_Orderid'];
 $number = $_REQUEST['e_order_no'];
-$order_type = $_REQUEST['e_order_type'];
+$order_type = 'multi';*//$_REQUEST['e_order_type'];
 $weight = $_REQUEST['e_weight'];
 $qty = $_REQUEST['e_qty'];
 $order_price = $_REQUEST['e_price'];
@@ -74,7 +74,6 @@ $v->validate([
     'manger'        => [$manger,    'required|int'],
     'id'            => [$id,    'required|int'],
     'order_no'      => [$number,    'required|min(1)|max(100)|unique()'],
-    'order_type'    => [$order_type,    'required|min(3)|max(10)'],
     'weight'        => [$weight,   'int'],
     'qty'           => [$qty,'int'],
     'order_price'   => [$order_price,   "required|isPrice"],
@@ -82,11 +81,10 @@ $v->validate([
     'branch_from'   => [$branch,  'required|int'],
     'client'        => [$client,  'required|int'],
     'client_phone'  => [$client_phone,  'isPhoneNumber'],
-    'customer_name' => [$customer_name,  'required|min(3)|max(100)'],
     'customer_phone'=> [$customer_phone,  'required|isPhoneNumber'],
     'city'          => [$city_to,  'required|int'],
     'town'          => [$town_to,  'required|int'],
-    'branch_to'     => [$branch_to,  'required|int'],
+    'branch_to'     => [$branch_to,  'int'],
     'order_note'    => [$order_note,  'max(250)'],
 ]);
 
