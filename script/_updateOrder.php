@@ -51,7 +51,7 @@ $manger = $_SESSION['userid'];
 
 $id = $_REQUEST['e_Orderid'];
 $number = $_REQUEST['e_order_no'];
-$order_type = 'multi';*//$_REQUEST['e_order_type'];
+$order_type = 'multi';//$_REQUEST['e_order_type'];
 $weight = $_REQUEST['e_weight'];
 $qty = $_REQUEST['e_qty'];
 $order_price = $_REQUEST['e_price'];
