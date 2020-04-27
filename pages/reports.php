@@ -390,8 +390,8 @@ legend
                           <span class="form-text text-danger" id="e_branch_err"></span>
   				</div>
                   <div class="form-group">
-  						<label>العميل:</label>
-  						<select data-show-subtext="true" data-live-search="true" type="text" class="selectpicker form-control dropdown-primary" name="e_client" id="e_client_id"  value="">
+  						<label>اسم السوق او الصفحه:</label>
+  						<select data-show-subtext="true" data-live-search="true" type="text" class="selectpicker form-control dropdown-primary" name="e_store" id="e_store_id"  value="">
                           </select>
                           <span class="form-text text-danger" id="e_client_err"></span>
   				</div>
@@ -546,6 +546,7 @@ legend
 <script src="js/getBraches.js" type="text/javascript"></script>
 <script type="text/javascript">
 getStores($("#store"));
+getStores($("#e_store_id"));
 function getorders(){
 $.ajax({
   url:"script/_getOrdersReport.php",
@@ -820,7 +821,6 @@ function editOrder(id){
           $('#e_city').val(this.to_city);
           $('#e_branch').val(this.from_branch);
 
-          getClients($('#e_client_id'),$('#e_branch').val());
           getTowns($('#e_town'),$('#e_city').val());
 
 
@@ -836,8 +836,8 @@ function editOrder(id){
           $('#e_branch_to').selectpicker('val',this.to_branch);
           $('#e_branch_to').val(this.to_branch);
 
-          $('#e_client_id').selectpicker('val',this.client_id);
-          $('#e_client_id').val(this.client_id);
+          $('#e_store_id').selectpicker('val',this.store_id);
+          $('#e_store_id').val(this.store_id);
 
           $('.selectpicker').selectpicker('refresh');
         });
