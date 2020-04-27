@@ -58,7 +58,7 @@ $order_price = $_REQUEST['e_price'];
 $order_iprice= $_REQUEST['e_iprice'];
 
 $branch = $_REQUEST['e_branch'];
-$client = $_REQUEST['e_client'];
+$store = $_REQUEST['e_store'];
 $client_phone = $_REQUEST['e_client_phone'];
 
 $customer_name = $_REQUEST['e_customer_name'];
@@ -79,7 +79,7 @@ $v->validate([
     'order_price'   => [$order_price,   "required|isPrice"],
     'order_iprice'  => [$order_iprice,   "isPrice"],
     'branch_from'   => [$branch,  'required|int'],
-    'client'        => [$client,  'required|int'],
+    'store'        => [$store,  'required|int'],
     'client_phone'  => [$client_phone,  'isPhoneNumber'],
     'customer_phone'=> [$customer_phone,  'required|isPhoneNumber'],
     'city'          => [$city_to,  'required|int'],
@@ -92,11 +92,11 @@ if($v->passes()) {
 
   $sql = 'update orders set
   order_no=?,order_type=?,weight=?,qty=?,price=?,new_price=?,
-  from_branch=?,client_id=?,customer_name=?,customer_phone=?,
+  from_branch=?,store_id=?,customer_name=?,customer_phone=?,
   to_city=?,to_town=?,to_branch=?,note=? where id = ?';
  $result = setData($con,$sql,
                    [$number,$order_type,$weight,$qty,$order_price,$order_iprice,
-                   $branch,$client,$customer_name,$customer_phone,
+                   $branch,$store,$customer_name,$customer_phone,
                    $city_to,$town_to,$branch_to,$order_note,$id]);
 if($result > 0){
   $success = 1;
@@ -112,7 +112,7 @@ $error = [
            'order_price'=>implode($v->errors()->get('order_price')),
            'order_iprice'=>implode($v->errors()->get('order_iprice')),
            'branch_from'=>implode($v->errors()->get('branch_from')),
-           'client'=>implode($v->errors()->get('client')),
+           'store'=>implode($v->errors()->get('store')),
            'client_phone'=>implode($v->errors()->get('client_phone')),
            'customer_name'=>implode($v->errors()->get('customer_name')),
            'customer_phone'=>implode($v->errors()->get('customer_phone')),

@@ -393,7 +393,7 @@ legend
   						<label>اسم السوق او الصفحه:</label>
   						<select data-show-subtext="true" data-live-search="true" type="text" class="selectpicker form-control dropdown-primary" name="e_store" id="e_store_id"  value="">
                           </select>
-                          <span class="form-text text-danger" id="e_client_err"></span>
+                          <span class="form-text text-danger" id="e_store_err"></span>
   				</div>
                   <div class="form-group">
   						<label>اسم المستلم:</label>
@@ -875,7 +875,7 @@ function updateOrder(){
            $("#e_iprice_err").text(res.error["order_iprice"]);
            $("#e_weight_err").text(res.error["weight"]);
            $("#e_qty_err").text(res.error["qty"]);
-           $("#e_client_err").text(res.error["client"]);
+           $("#e_store_err").text(res.error["store"]);
            $("#e_client_phone_err").text(res.error["client_phone"]);
            $("#e_customer_name_err").text(res.error["customer_name"]);
            $("#e_customer_phone_err").text(res.error["customer_phone"]);
