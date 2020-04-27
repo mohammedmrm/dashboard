@@ -375,12 +375,12 @@ legend
   				</div>-->
                   <div class="form-group">
   						<label>الوزن:</label>
-  						<input type="number" id="e_weight" name="e_weight" class="form-control"  placeholder="">
+  						<input type="number" value="1" id="e_weight" name="e_weight" class="form-control"  placeholder="">
   						<span class="form-text text-danger" id="e_weight_err"></span>
   				</div>
                   <div class="form-group">
   						<label>العدد:</label>
-  						<input type="number" id="e_qty" name="e_qty" class="form-control"  placeholder="">
+  						<input type="number" value="1" id="e_qty" name="e_qty" class="form-control"  placeholder="">
   						<span class="form-text text-danger" id="e_qty_err"></span>
   				</div>
                   <div class="form-group">
