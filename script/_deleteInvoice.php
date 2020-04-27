@@ -38,5 +38,5 @@ if($v->passes()){
   $msg = "فشل الحذف";
   $success = 0;
 }
-echo json_encode(['success'=>$success, 'msg'=>$msg]);
+echo json_encode([$result,'success'=>$success, 'msg'=>$msg]);
 ?>

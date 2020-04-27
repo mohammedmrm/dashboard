@@ -577,10 +577,14 @@ function makeInvoice() {
 function makeInvoiceForReturned() {
  if(Number($("#store").val()) > 0){
         $.ajax({
-            url:"script/_makeInvoice.php",
+            url:"script/_makeInvoiceForReturned.php",
             type:"POST",
+            beforeSend:function(){
+              $("#store_data").addClass("loading");
+            },
             data: $("#storedataform").serialize()+"&orderStatus=6",
             success:function(res){
+              $("#store_data").removeClass("loading");
             console.log(res);
                   if(res.success == 1){
                     getStoreReturned();
@@ -593,6 +597,7 @@ function makeInvoiceForReturned() {
                 }
               });
     }else{
+      $("#store_data").removeClass("loading");
       Toast.warning("يحب تحديد الصفحه");
     }
 }

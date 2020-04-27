@@ -1032,7 +1032,7 @@ var data = $("#ordertabledata").serialize();
 window.open(domain + data, '_blank');
 }
 function makeInvoice() {
-  if($("#orderStatus").val() == 4 || $("#orderStatus").val() == 6 ||  $("#orderStatus").val() == 9 || $("#orderStatus").val() == 10 || $("#orderStatus").val() == 7){
+  if($("#orderStatus").val() == 4 || $("#orderStatus").val() == 6 ||  $("#orderStatus").val() == 9 || $("#orderStatus").val() == 10 || $("#orderStatus").val() == 11  || $("#orderStatus").val() == 7){
     if(Number($("#store").val()) > 0){
         if(Number($("#invoice").val()) == 1){
               $.ajax({
@@ -1053,13 +1053,13 @@ function makeInvoice() {
               });
         }else{
           console.log(Number($("#invoice").val()));
-         Toast.warning("يحب تحديد الطلبات بدون فاتروه");
+         Toast.warning("يحب تحديد الطلبات بدون كشف");
         }
     }else{
       Toast.warning("يحب تحديد الصفحه");
     }
   }else{
-     Toast.warning("يحب تحديد حاله الطلب");
+     Toast.warning("يحب تحديد حاله الطلب (مستلمه او راجعه او مؤجل)");
   }
 }
 function setMsgSeen(id){
